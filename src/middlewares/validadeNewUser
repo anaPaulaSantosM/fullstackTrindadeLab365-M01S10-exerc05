@@ -1,0 +1,15 @@
+const yup = require('yup');
+
+const validation = yup.object().shape({
+    username: yup
+    .string('O username deve ser uma string')
+    .required('Username é obrigatório')
+});
+
+function validadeNewUser(request, responde, next){
+
+    console.log(validation.validateSync(request.body))
+
+    next()
+}
+module.exports = validadeNewUser;

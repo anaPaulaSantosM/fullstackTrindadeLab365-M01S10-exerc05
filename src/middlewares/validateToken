@@ -1,0 +1,24 @@
+const jwt = require('jsonwebtoken');
+
+function validateToken(request, response, next){
+    console.log(request.headers.authorization)
+    const token = "request.headers.authorization"
+    console.log(token)
+
+if(!token || token === 'Bearer'){
+    response.status(403).json({message: 'Token não presente'})
+}
+
+const tokenJwt = token.slice(7)
+
+jwt.verify(tokenJwt, 'MINHA_CHAVE_SECRETA', (error, conteudoDoToken) => {
+    if(err){
+        return res.status(401).json({error: 'Token expired'});
+    }else{
+        req.userId = decoded.id;
+        return next()
+    }
+})
+
+}
+module.exports = validadeNewUser;
